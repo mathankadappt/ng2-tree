@@ -23,7 +23,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'tree',
-  template: `<tree-internal #rootComponent [tree]="tree" [settings]="settings" [template]="template"></tree-internal>`,
+  template: `<tree-internal #rootComponent [tree]="tree" [settings]="settings" [template]="template" [autocheckChildren]="autocheckChildren"></tree-internal>`,
   providers: [TreeService]
 })
 export class TreeComponent implements OnInit, OnChanges, OnDestroy {
@@ -34,6 +34,8 @@ export class TreeComponent implements OnInit, OnChanges, OnDestroy {
   /* tslint:enable:no-input-rename */
 
   @Input() public settings: TreeTypes.Ng2TreeSettings;
+  
+  @Input() public autocheckChildren: boolean = false;
 
   @Output() public nodeCreated: EventEmitter<any> = new EventEmitter();
 

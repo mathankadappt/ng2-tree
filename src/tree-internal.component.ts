@@ -90,7 +90,7 @@ export class TreeInternalComponent implements OnInit, OnChanges, OnDestroy, Afte
   @Input() public settings: TreeTypes.Ng2TreeSettings;
 
   @Input() public template: TemplateRef<any>;
-
+  public autocheckChildren = false;
   public isSelected = false;
   public isRightMenuVisible = false;
   public isLeftMenuVisible = false;
@@ -330,7 +330,9 @@ export class TreeInternalComponent implements OnInit, OnChanges, OnDestroy, Afte
 
     this.checkboxElementRef.nativeElement.indeterminate = false;
     this.treeService.fireNodeChecked(this.tree);
-    this.executeOnChildController(controller => controller.check());
+    if (this.autocheckChildren) {
+      this.executeOnChildController(controller => controller.check());
+    }
     this.tree.checked = true;
   }
 
